@@ -30,5 +30,30 @@ router.get('/:id', (req, res) => {
   })
 })
 
+router.post('/', (req, res) => {
+  const body = req.body
+  res.json({
+    message:'Crear registro',
+    data:body
+  })
+})
+
+router.patch('/:id', (req, res) => {
+  const {id} = req.params
+  const body = req.body
+  res.json({
+    message:'Actualizar registro parcialmente',
+    data:body,
+    id
+  })
+})
+
+router.delete('/:id', (req, res) => {
+  const {id} = req.params
+  res.json({
+    message:'Eliminar registro',
+    id
+  })
+})
 
 module.exports = router
