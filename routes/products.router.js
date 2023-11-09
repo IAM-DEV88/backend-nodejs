@@ -2,26 +2,30 @@ const express = require('express');
 const ProductsService = require('../services/product.service');
 
 const router = express.Router();
-const service = new ProductsService()
+const service = new ProductsService();
 
-router.get('/', (req, res) => {
-  const products = service.find();
+router.get('/', async (req, res) => {
+  const products = await service.find();
   res.json(products);
   // console.log(products);
   // res.send('products');
 });
 
-router.get('/filter', (req, res) => {
+router.get('/filter', async (req, res) => {
   res.json('filtro');
 });
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
-  const product = service.findOne(id)
-  res.json(product);
+router.get('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = await service.findOne(id);
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const body = req.body;
   res.status(201).json({
     message: 'Crear registro',
@@ -29,17 +33,18 @@ router.post('/', (req, res) => {
   });
 });
 
-router.patch('/:id', (req, res) => {
-  const { id } = req.params;
-  const body = req.body;
-  res.json({
-    message: 'Actualizar registro parcialmente',
-    data: body,
-    id,
-  });
+router.patch('/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const product = await service.update(id, body);
+    res.json(product);
+  } catch (error) {
+    next(error);
+  }
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
   res.json({
     message: 'Eliminar registro',
