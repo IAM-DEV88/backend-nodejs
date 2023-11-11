@@ -21,8 +21,12 @@
   "dependencies": {
     "@faker-js/faker": "^8.2.0",
     "@hapi/boom": "^9.1.4",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "faker": "^5.5.3",
     "joi": "^17.11.0"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
