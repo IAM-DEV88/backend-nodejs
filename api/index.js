@@ -22,11 +22,12 @@ const options = {
 // Habilita cualquier origen
 app.use(cors(options))
 
+routerApi(app)
+
 app.get('/api', (req, res) => {
   res.send('Servidor ejecutado')
 })
 
-routerApi(app)
 app.use(logErrors)
 app.use(boomErrorHandler)
 app.use(errorHandler)
