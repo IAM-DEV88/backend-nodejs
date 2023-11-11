@@ -26,3 +26,5 @@ Conceptos y prácticas Backend con NodeJS
     // "image": "http://www.dsd.com/fd"
 }
 ```
+
+<img src="https://drive.google.com/uc?export=view&id=1doi9iElV64SeTnwsRoASwWGoQW_d0kyJ" style="width: 100%; height: auto" title="Endpoint test" />
